@@ -1,17 +1,27 @@
 #define _GNU_SOURCE
+#ifdef WIN32
+#include <windows.h>
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "cg_video.h"
 #include "outline.h"
 #include "shader.h"
 #include "tridlist.h"
 
 Frames *readPyd(char *filename, int *fnum){
    FILE *pydfile;
+#ifdef WIN32
+   char line[5000];
+#else
    char *line = NULL;
+#endif
    size_t size;
    Frames *frame = NULL;
    int framenum = 0;
@@ -21,7 +31,12 @@ Frames *readPyd(char *filename, int *fnum){
    GLfloat norm;
 
    pydfile = fopen(filename, "r");
-   while( getline(&line, &size, pydfile) != -1){
+#ifdef WIN32
+   while( fgets(line, 5000, pydfile) )
+#else
+   while( getline(&line, &size, pydfile) != -1)
+#endif
+   {
       if(line[0] == 'F'){
          if(framenum != 0){
             frame[framenum-1].contournum = contournum;
@@ -53,7 +68,9 @@ Frames *readPyd(char *filename, int *fnum){
    *fnum = framenum;
 
    fclose(pydfile);
+#ifndef WIN32
    free(line);
+#endif
    return(frame);
 }
 
@@ -191,7 +208,7 @@ int isInside(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2, GLfloat x3, GLfloat
 /* Simple ear clipping triangulation with exploding polygon feature*/
 void earClipping(TriangleDList *triangles, int *mc, GLfloat *mapped){
    int canTriangulate = 1, inside;
-   Triangle *iter, *iter2;
+   Triangle *iter, *iter2, *iter_next;
 
    while(canTriangulate){
       canTriangulate = 0;
@@ -218,7 +235,9 @@ void earClipping(TriangleDList *triangles, int *mc, GLfloat *mapped){
             mapped[*mc + 4] = iter->prev->x;
             mapped[*mc + 5] = iter->prev->y;
             *mc += 6;
+            iter_next = iter->next;
             removeElement(triangles, iter);
+            iter = iter_next;
             canTriangulate = 1;
          }
       }

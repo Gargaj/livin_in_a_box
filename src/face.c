@@ -1,6 +1,13 @@
+#ifdef WIN32
+#include <windows.h>
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
+
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <stdlib.h>
+#include "cg_video.h"
 
 #include "face.h"
 #include "shader.h"

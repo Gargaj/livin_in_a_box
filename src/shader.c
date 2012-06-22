@@ -1,13 +1,18 @@
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
+#ifdef WIN32
+#include <windows.h>
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "shader.h"
+#include "cg_video.h"
 
 /* Create one shaders from one string */
 GLuint createShader(GLenum shadertype, const char *source){

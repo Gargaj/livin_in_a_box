@@ -22,7 +22,8 @@ void addElement(TriangleDList *triangles, float x, float y){
 }
 
 void removeElement(TriangleDList *triangles, Triangle *del){
-   Triangle *dummy;
+  Triangle *dummy;
+  Triangle *prev = del->prev;
 
    dummy = del->next;
    del->next->prev = del->prev;
@@ -34,7 +35,9 @@ void removeElement(TriangleDList *triangles, Triangle *del){
 void deleteAll(TriangleDList *triangles){
    Triangle *iter;
 
-   for(iter = triangles->list; iter != NULL; iter = iter->next){
+   for(iter = triangles->list; iter != NULL; ){
+     Triangle * iter_next = iter->next;
       free(iter);
+      iter = iter_next;
    }
 }

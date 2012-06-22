@@ -1,5 +1,11 @@
-#define GL_GLEXT_PROTOTYPES
+#ifdef WIN32
+# include <windows.h>
+# define _USE_MATH_DEFINES
+#else
+# define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,7 +13,8 @@
 
 #include "livin.h"
 #include "cg_time.h"
-#include "cg_x11.h"
+
+#include "cg_video.h"
 #include "shader.h"
 #include "matrix.h"
 #include "mesh3d.h"

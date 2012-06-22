@@ -7,7 +7,7 @@
 DepthVideo openDepthVideo(char *filename){
    DepthVideo dv;
 
-   dv.videofile = fopen(filename, "r");
+   dv.videofile = fopen(filename, "rb");
    dv.buffer = malloc(sizeof(char) * 640 * 480);
    if(dv.buffer != NULL){
       memset(dv.buffer, 0, sizeof(char) * 640 * 480);

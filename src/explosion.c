@@ -1,5 +1,11 @@
+#ifdef WIN32
+#include <windows.h>
+#include "cg_video_wgl.h"
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <stdlib.h>
 #include "shader.h"
 #include "explosion.h"

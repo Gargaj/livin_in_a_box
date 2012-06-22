@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
+#ifdef WIN32
+#include <windows.h>
+#endif
 #include <GL/gl.h>
-#include <unistd.h>
+#include <GL/glext.h>
+//#include <unistd.h>
 #include <math.h>
 #include <png.h>
 
@@ -23,7 +28,7 @@ GLuint loadPNGTexture(const char *filename){
   int i;
 
   /* initialization steps */
-  texturefile  = fopen(filename, "r");
+  texturefile  = fopen(filename, "rb");
 
   texture_ptr  = png_create_read_struct(PNG_LIBPNG_VER_STRING,
                                        NULL,

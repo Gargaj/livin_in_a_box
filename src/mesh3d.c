@@ -1,5 +1,11 @@
+#ifdef WIN32
+#include <windows.h>
+#include "cg_video_wgl.h"
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -23,6 +29,61 @@ typedef struct Index_ {
    unsigned int normals[3];
 }Index;
 
+#ifdef WIN32
+char* strsep(char** stringp, const char* delim)
+{
+  char* start = *stringp;
+  char* p;
+
+  p = (start != NULL) ? strpbrk(start, delim) : NULL;
+
+  if (p == NULL)
+  {
+    *stringp = NULL;
+  }
+  else
+  {
+    *p = '\0';
+    *stringp = p + 1;
+  }
+
+  return start;
+}
+
+char *strtok_r(char *s, const char *delim, char **save_ptr)
+{
+  char *token;
+
+  if(s == NULL)
+    s = *save_ptr;
+
+  /* Scan leading delimiters.  */
+  s += strspn(s, delim);
+  if(*s == '\0')
+  {
+    *save_ptr = s;
+    return NULL;
+  }
+
+  /* Find the end of the token.  */
+  token = s;
+  s = strpbrk(token, delim);
+
+  if(s == NULL)
+  {
+    /* This token finishes the string.  */
+    *save_ptr = strchr(token, '\0');
+  }
+  else
+  {
+    /* Terminate the token and make *SAVE_PTR point past it.  */
+    *s = '\0';
+    *save_ptr = s + 1;
+  }
+
+  return token;
+}
+#endif
 /*
    Parse the string 'line' for coordinates. The results went to the 'vertices' array.
    We use arrays instead of linked list because we would like to prevent the revers

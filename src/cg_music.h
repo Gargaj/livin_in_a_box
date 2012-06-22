@@ -1,3 +1,4 @@
+#ifndef WIN32
 #include <vorbis/vorbisfile.h>
 #include <vorbis/codec.h>
 #include <alsa/asoundlib.h>
@@ -10,8 +11,9 @@ OggVorbis_File            cg_music;
 char                     *cg_audio_buffer;
 int                       cg_audio_buffer_size;
 FILE                     *cg_music_file;
+#endif
 
 void InitMusic(char *musicfilename);
-void PlayingMusic(snd_pcm_t *handle);
+//void PlayingMusic(snd_pcm_t *handle);
 void SyncPlay();
 void FreeMusic();

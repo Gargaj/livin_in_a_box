@@ -1,6 +1,12 @@
+#ifdef WIN32
+#include <windows.h>
+#else
 #define GL_GLEXT_PROTOTYPES
+#endif
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include "squares.h"
+#include "cg_video.h"
 
 GLuint square;
 GLuint square_buffer;
