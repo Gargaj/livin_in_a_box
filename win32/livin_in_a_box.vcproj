@@ -39,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;&quot;$(ProjectDir)&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir);$(ProjectDir)/../libpng"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -114,7 +114,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;&quot;$(ProjectDir)&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir);$(ProjectDir)/../libpng"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
