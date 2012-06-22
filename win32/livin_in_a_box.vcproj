@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="livin_in_a_box"
 	ProjectGUID="{9B992318-DD43-4310-82D2-9E1D0861CF46}"
+	RootNamespace="livin_in_a_box"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -38,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;c:\Temp\livin\livin_in_a_box\win32\"
+				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;&quot;$(ProjectDir)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -113,9 +114,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;c:\Temp\livin\livin_in_a_box\win32\"
+				AdditionalIncludeDirectories="c:\svn_code\client\Libpng\;C:\svn_code\client\libvorbis\include;&quot;$(ProjectDir)&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
@@ -231,6 +232,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\shader.h"
 				>
 			</File>
@@ -252,6 +257,10 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath=".\FWZ.rc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Source Files"

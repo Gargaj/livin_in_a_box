@@ -15,7 +15,8 @@ void InitMusic(char *musicfilename) {
   BASS_Start();
 }
 void SyncPlay() {
-  BASS_ChannelPlay(hStream,FALSE);
+  if (!BASS_ChannelIsActive(hStream))
+    BASS_ChannelPlay(hStream,FALSE);
 }
 
 void FreeMusic() {
